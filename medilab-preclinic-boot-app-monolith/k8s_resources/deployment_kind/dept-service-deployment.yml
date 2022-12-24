@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: medilab-dept-service11
+  name: medilab-dept-service22
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medilab-dept-service
+  template:
+    metadata:
+      name: medilab-dept-service
+      labels:
+        app: medilab-dept-service
+    spec:
+       containers:
+        - name: medilab-dept-service-container
+          image: narsi1839/medilab-dept-img
+          ports:
+            - containerPort: 9098

@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  medilab-monolith-app-db-service:
+    container_name: medilab-monolith-app-db
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment: 
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=medilab-monolith-app-schema
+  
+  medilab-monolith-app-service: 
+    container_name: medilab-monolith-app
+    image:  medilab-monolith-app-image
+    restart: on-failure
+    ports:
+     - "5002:8087" 
+    environment:
+      - DB_USER_NAME=root
+      - DB_USER_PASSWORD=root
+      - DB_HOST=medilab-monolith-app-db-service
+      - DB_SCHEMA_NAME=medilab-monolith-app-schema
+             
+      
